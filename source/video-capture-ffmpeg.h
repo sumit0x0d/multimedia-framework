@@ -1,0 +1,6 @@
+#ifndef VIDEO_CAPTURE_FFMPEG_H
+#define VIDEO_CAPTURE_FFMPEG_H
+
+
+
+#endif
