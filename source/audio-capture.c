@@ -3,7 +3,7 @@
 
 #include <audio-capture.h>
 
-#include "audio-capture-pulseaudio.h"
+#include "audio-capture/audio-capture-pulseaudio.h"
 
 typedef struct audio_capture_interface _interface_t;
 typedef struct audio_capture_create_config _create_config_t;

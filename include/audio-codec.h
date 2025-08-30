@@ -3,28 +3,29 @@
 
 #include <stdint.h>
 
-struct audio_codec;
-
-typedef void * AudioCodecBackend;
 typedef struct audio_codec AudioCodec;
+typedef void * AudioCodecBackend;
+typedef enum audio_codec_backend_type AudioCodecBackendType;
+typedef struct audio_codec_create_info AudioCodecCreateInfo;
+typedef struct audio_codec_interface AudioCodecInterface;
 
-typedef enum audio_codec_backend_type {
+enum audio_codec_backend_type {
 	AUDIO_CODEC_BACKEND_TYPE_PIPEWIRE,
 	AUDIO_CODEC_BACKEND_TYPE_PULSEAUDIO,
-} AudioCodecBackendType;
+};
 
-typedef struct audio_codec_create_config {
+struct audio_codec_create_info {
 	AudioCodecBackendType backend_type;
 	uint32_t sample_rate;
 	uint8_t channel_count;
-} AudioCodecCreateConfig;
+};
 
-typedef struct audio_codec_interface {
-	void (*create)(const AudioCodecCreateConfig *accconfig, AudioCodecBackend backend);
+struct audio_codec_interface {
+	void (*create)(const AudioCodecCreateInfo *accInfo, AudioCodecBackend backend);
 	void (*destroy)(AudioCodecBackend backend);
-} AudioCodecInterface;
+};
 
-void audio_codec_create(const AudioCodecCreateConfig *accconfig, AudioCodec *acodec);
-void audio_codec_destroy(AudioCodec *acodec);
+AudioCodec *AudioCodec_Create(const AudioCodecCreateInfo *accInfo);
+void AudioCodec_Destroy(AudioCodec *aCodec);
 
 #endif

@@ -1,2 +1,4 @@
 build
 .cache
+source/.DS_Store
+source/video-playback/.DS_Store
